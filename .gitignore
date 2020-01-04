@@ -5,7 +5,7 @@ build/
 !**/src/main/**
 !**/src/test/**
 
-./PrivateKey.java
+PrivateKey.java
 
 ### STS ###
 .apt_generated
