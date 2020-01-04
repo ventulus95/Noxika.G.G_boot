@@ -1,7 +1,7 @@
 package com.example.basement;
 
 public enum PrivateKey {
-    API_KEY("+");
+    API_KEY("aa");
     private final String name;
 
     private PrivateKey(String s) {
