@@ -1,7 +1,6 @@
 package com.example.basement;
 
 import com.example.basement.DTO.Summoner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
