@@ -1,5 +1,6 @@
 package com.example.basement;
 
+import com.example.basement.DTO.LeagueEntrydto;
 import com.example.basement.DTO.Summoner;
 import com.example.basement.Version.Realms;
 import com.example.basement.Version.Version;
@@ -36,6 +37,8 @@ public class SearchSummoner {
     public String search(Model model, @RequestParam(value = "uid") String users) throws IOException {
         model.addAttribute("uid", service.findSummoner(users, restTemplate));
         Summoner s = service.findSummoner(users, restTemplate);
+        LeagueEntrydto[] leagueEntrydto = service.findLeague(s.getId(), restTemplate);
+        model.addAttribute("league", leagueEntrydto);
         model.addAttribute("imgurl", realms.getCdn() + "/" + currVer.getProfileicon() + "/img/profileicon/" + s.getProfileIconId() + ".png");
         return "summoner";
     }
