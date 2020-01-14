@@ -1,8 +1,6 @@
 package com.example.basement;
 
 import com.example.basement.DTO.Summoner;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,11 +9,6 @@ import java.io.IOException;
 @Service
 public class SummonerDetailService implements SummonerDetail {
 
-
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
 
     @Override
     public Summoner findSummoner(String id, RestTemplate restTemplate) throws IOException {
