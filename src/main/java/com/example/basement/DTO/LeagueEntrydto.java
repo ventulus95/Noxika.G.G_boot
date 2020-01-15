@@ -8,13 +8,14 @@ public class LeagueEntrydto {
     private String rank;
     private String tier;
     private int leaguePoints;
+    private float winrate;
 
     public LeagueEntrydto() {
 
     }
 
     public LeagueEntrydto(String queueType, int wins, int losses, String leagueId, String rank,
-                          String tier, int leaguePoints) {
+                          String tier, int leaguePoints, float winrate) {
         super();
         this.queueType = queueType;
         this.wins = wins;
@@ -23,6 +24,7 @@ public class LeagueEntrydto {
         this.rank = rank;
         this.tier = tier;
         this.leaguePoints = leaguePoints;
+        this.winrate = winrate;
     }
 
     public String getQueueType() {
@@ -30,7 +32,12 @@ public class LeagueEntrydto {
     }
 
     public void setQueueType(String queueType) {
-        this.queueType = queueType;
+        if (queueType.equals("RANKED_FLEX_SR")) {
+            this.queueType = "자유 랭크";
+        } else {
+            this.queueType = "솔로 랭크";
+        }
+
     }
 
     public int getWins() {
@@ -86,6 +93,10 @@ public class LeagueEntrydto {
         return "LeagueEntrydto [queueType=" + queueType + ", wins=" + wins
                 + ", losses=" + losses + ", leagueId=" + leagueId + ", rank=" + rank + ", tier=" + tier
                 + ", leaguePoints=" + leaguePoints + "]";
+    }
+
+    public String getWinrate() {
+        return String.format("%.2f", (float) wins / (wins + losses) * 100);
     }
 }
 	

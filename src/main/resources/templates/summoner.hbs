@@ -23,7 +23,8 @@
 <div class="container p-5 shadow-lg p-3 mb-5 bg-white rounded">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-sm-4">
-            <img alt="아이콘" src={{imgurl}} class="rounded-llg mx-auto d-block" style="max-width: 70%;">
+            <img alt="아이콘" src="{{realms.cdn}}/{{version.profileicon}}/img/profileicon/{{uid.profileIconId}}.png"
+                 class="rounded-llg mx-auto d-block" style="max-width: 70%;">
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-7" id="idLevel">
@@ -34,20 +35,38 @@
     <div class="col-12" style="height: 100px"></div>
 
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-md-5">
-            <img alt="랭크 엠블램" src="" class="mx-auto d-block" style="max-width: 75%;">
-        </div>
-        <div class="col-md-1"></div>
-        <div class="col-md-6" style="text-align: center;">
+        {{#league}}
+            <div class="col-md-5">
+                <img alt="랭크 엠블램" src="/img/emblems/Emblem_{{tier}}.png" class="mx-auto d-block"
+                     style="max-width: 75%;">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6" style="text-align: center;">
+                <h2>{{queueType}}</h2>
+                <h3>승리/패배 </h3>
+                <p style="color: #007bff; font-size: 24px; display: inline">{{wins}}</p>
+                <p style="font-size: 24px; display: inline">/</p>
+                <p style="color:#dc3545; font-size: 24px; display:inline">{{losses}}</p>
+                <span style="color: #6c757d; font-size:18px;"> ({{winrate}}%) </span>
 
-
-            <h3>승리/패배 </h3>
-            <!--                <p style="color: #007bff; font-size: 24px; display: inline">${leagueInfo.getWins()}</p><p style="font-size: 24px; display: inline">/</p><p style="color:#dc3545; font-size: 24px; display:inline">${leagueInfo.getLosses()}</p>-->
-            <!--                <span style="color: #6c757d; font-size:18px;"> (${percent}) </span>-->
-
-            <h3>당신의 티어는? </h3>
-            <!--                <p>당신의 리그는 ${leagueName[s.index]}, ${leagueInfo.getTier()} ${leagueInfo.getRank()} 단계 입니다.</p>-->
-        </div>
+                <h3>당신의 티어는? </h3>
+                {{tier}}
+                {{rank}}
+                <!--                <p>당신의 리그는 ${leagueName[s.index]}, ${leagueInfo.getTier()} ${leagueInfo.getRank()} 단계 입니다.</p>-->
+            </div>
+        {{/league}}
+    </div>
+    <div class="row h-100 justify-content-center align-items-center">
+        {{#matches}}
+            <div class="col-md-5">
+                {{champion}}
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6" style="text-align: center;">
+                {{role}}
+                {{timestamp}}
+            </div>
+        {{/matches}}
     </div>
 
 
@@ -63,6 +82,7 @@
         </div>
     </div>
 </footer>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
