@@ -9,6 +9,8 @@ public class MatchReferenceDto {
     private String lane;
     private long gameId;
     private int champion;
+    private String championName;
+    private String championImgUrl;
     private String platformId;
     private int season;
     private int queue;
@@ -18,14 +20,36 @@ public class MatchReferenceDto {
     public MatchReferenceDto() {
     }
 
-    public MatchReferenceDto(String lane, long gameId, int champion, String platformId, int season, int queue, String role, String timestamp) {
+    public MatchReferenceDto(String lane, long gameId, int champion, String championName, String championImgUrl, String platformId, int season, int queue, String role, String timestamp) {
         this.lane = lane;
         this.gameId = gameId;
         this.champion = champion;
+        this.championName = championName;
+        this.championImgUrl = championImgUrl;
         this.platformId = platformId;
         this.season = season;
         this.queue = queue;
         this.role = role;
+        this.timestamp = timestamp;
+    }
+
+    public String getChampionName() {
+        return championName;
+    }
+
+    public void setChampionName(String championName) {
+        this.championName = championName;
+    }
+
+    public String getChampionImgUrl() {
+        return championImgUrl;
+    }
+
+    public void setChampionImgUrl(String championImgUrl) {
+        this.championImgUrl = championImgUrl;
+    }
+
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -103,11 +127,13 @@ public class MatchReferenceDto {
                 "lane='" + lane + '\'' +
                 ", gameId=" + gameId +
                 ", champion=" + champion +
+                ", championName=" + championName +
+                ", championImgUrl=" + championImgUrl +
                 ", platformId='" + platformId + '\'' +
                 ", season=" + season +
                 ", queue=" + queue +
                 ", role='" + role + '\'' +
-                ", timestamp=" + timestamp +
+                ", timestamp='" + timestamp + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.basement;
 
+import com.example.basement.Champion.ChampionService;
 import com.example.basement.DTO.LeagueEntrydto;
 import com.example.basement.DTO.MatchReferenceDto;
 import com.example.basement.DTO.MatchlistDto;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -32,6 +32,9 @@ public class SearchSummoner {
     MatchService matchService;
 
     @Autowired
+    ChampionService championService;
+
+    @Autowired
     RestTemplate restTemplate;
 
     @Autowired
@@ -41,11 +44,17 @@ public class SearchSummoner {
     Version currVer;
 
     @GetMapping("/search")
-    public String search(Model model, @RequestParam(value = "uid") String users) throws IOException {
+    public String search(Model model, @RequestParam(value = "uid") String users) throws Exception {
         Summoner tempSummoner = service.findSummoner(users, restTemplate);
         LeagueEntrydto[] leagueEntrydto = service.findLeague(tempSummoner.getId(), restTemplate);
         MatchlistDto matchlistDto = matchService.searchSummonerMatchList(tempSummoner.getAccountId(), restTemplate);
         List<MatchReferenceDto> referenceDto = matchlistDto.getMatches();
+        for (MatchReferenceDto temp : referenceDto.subList(0, referenceDto.size())) {
+            temp.setChampionImgUrl("http://ddragon.leagueoflegends.com/cdn/" +
+                    currVer.getChampion() +
+                    "/img/champion/" + championService.imgUrlCham(temp.getChampion(), restTemplate, currVer) + ".png");
+            temp.setChampionName(championService.nameCham(temp.getChampion(), restTemplate, currVer));
+        }
         ArrayUtils.reverse(leagueEntrydto);
         model.addAttribute("uid", tempSummoner);
         model.addAttribute("version", currVer);
