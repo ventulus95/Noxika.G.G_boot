@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/css/bootstrap.css?after">
     <title>{{uid.name}}님의 전적정보</title>
 </head>
@@ -58,13 +57,16 @@
     </div>
     <div class="row h-100 justify-content-center align-items-center">
         {{#matches}}
-            <div class="col-md-5">
-                {{champion}}
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-6" style="text-align: center;">
-                {{role}}
-                {{timestamp}}
+            <div>
+                <div class="col-md-5">
+                    <img src="{{championImgUrl}}" alt="챔피언 사진들" style="width: 75px; margin: 15px;"/>
+                    {{championName}}
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-6" style="text-align: center;">
+                    {{role}}
+                    {{timestamp}}
+                </div>
             </div>
         {{/matches}}
     </div>
@@ -86,6 +88,7 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
