@@ -15,8 +15,6 @@ class BasementApplicationTests {
 
 	private static Logger log = LoggerFactory.getLogger(BasementApplicationTests.class);
 
-
-
 	@Test
 	void contextLoads() {
 	}

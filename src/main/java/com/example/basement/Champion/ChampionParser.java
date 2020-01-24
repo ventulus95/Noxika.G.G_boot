@@ -5,6 +5,13 @@ import java.util.HashMap;
 public class ChampionParser {
     private HashMap<String, ChampionData> data;
 
+    public ChampionParser() {
+    }
+
+    public ChampionParser(HashMap<String, ChampionData> data) {
+        this.data = data;
+    }
+
     public HashMap<String, ChampionData> getData() {
         return data;
     }

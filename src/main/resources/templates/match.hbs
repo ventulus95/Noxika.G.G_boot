@@ -21,19 +21,6 @@
 </nav>
 <div class="container p-5 shadow-lg p-3 mb-5 bg-white rounded">
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-sm-4">
-            <img alt="아이콘" src="{{realms.cdn}}/{{version.profileicon}}/img/profileicon/{{uid.profileIconId}}.png"
-                 class="rounded-llg mx-auto d-block" style="max-width: 70%;">
-        </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-7" id="idLevel">
-            <h3>{{uid.name}}</h3>
-            <p>Lv. {{uid.summonerLevel}}</p>
-        </div>
-    </div>
-    <div class="col-12" style="height: 100px"></div>
-
-    <div class="row h-100 justify-content-center align-items-center">
         {{#league}}
             <div class="col-md-5">
                 <img alt="랭크 엠블램" src="/img/emblems/Emblem_{{tier}}.png" class="mx-auto d-block"
@@ -56,7 +43,7 @@
         {{/league}}
     </div>
     <div class="row h-100 justify-content-center align-items-center">
-        {{#matches}}
+        {{#match}}
             <div class="col-md-5">
                 <a href="/search/match/{{gameId}}">이 메치에 대해서 알아보기</a>
                 <img src="{{championImgUrl}}" alt="챔피언 사진들" style="width: 75px; margin: 15px;"/>
@@ -67,7 +54,7 @@
                 {{role}}
                 {{timestamp}}
             </div>
-        {{/matches}}
+        {{/match}}
     </div>
 
 
