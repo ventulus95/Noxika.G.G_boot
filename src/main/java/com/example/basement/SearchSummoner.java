@@ -1,7 +1,7 @@
 package com.example.basement;
 
+import com.example.basement.Champion.ChampionData;
 import com.example.basement.Champion.ChampionParser;
-import com.example.basement.Champion.ChampionService;
 import com.example.basement.DTO.LeagueEntrydto;
 import com.example.basement.DTO.MatchReferenceDto;
 import com.example.basement.DTO.MatchlistDto;
@@ -17,8 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -54,10 +52,19 @@ public class SearchSummoner {
         MatchlistDto matchlistDto = matchService.searchSummonerMatchList(tempSummoner.getAccountId(), restTemplate);
         List<MatchReferenceDto> referenceDto = matchlistDto.getMatches();
         for (MatchReferenceDto temp : referenceDto.subList(0, referenceDto.size())) {
+            String championString = null;
+            String championImgString = null;
+            int champion = temp.getChampion();
+            for (ChampionData data : championParser.getData().values()) {
+                if (data.getKey() == champion) {
+                    championImgString = data.getId();
+                    championString = data.getName();
+                }
+            }
             temp.setChampionImgUrl("http://ddragon.leagueoflegends.com/cdn/" +
                     currVer.getChampion() +
-                    "/img/champion/" + championParser.getData().get(temp.getChampion()).getId() + ".png");
-            temp.setChampionName(championParser.getData().get(temp.getChampion()).getName());
+                    "/img/champion/" + championImgString + ".png");
+            temp.setChampionName(championString);
         }
         ArrayUtils.reverse(leagueEntrydto);
         model.addAttribute("uid", tempSummoner);
@@ -65,7 +72,6 @@ public class SearchSummoner {
         model.addAttribute("realms", realms);
         model.addAttribute("league", leagueEntrydto);
         model.addAttribute("matches", referenceDto);
-        redirectAttributes.addFlashAttribute("aa", model);
         return "summoner";
     }
 
