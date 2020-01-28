@@ -17,6 +17,8 @@ public class MatchDto {
     private List<ParticipantDto> participants;
     private long gameDuration;
     private long gameCreation;
+    private boolean winorloss; //true: loss false: true
+    private int currteam;
 
     public MatchDto() {
     }
@@ -141,6 +143,22 @@ public class MatchDto {
         this.gameCreation = gameCreation;
     }
 
+    public boolean isWinorloss() {
+        return winorloss;
+    }
+
+    public void setWinorloss(boolean winorloss) {
+        this.winorloss = winorloss;
+    }
+
+    public int getCurrteam() {
+        return currteam;
+    }
+
+    public void setCurrteam(int currteam) {
+        this.currteam = currteam;
+    }
+
     @Override
     public String toString() {
         return "MatchDto{" +
@@ -157,6 +175,8 @@ public class MatchDto {
                 ", participants=" + participants +
                 ", gameDuration=" + gameDuration +
                 ", gameCreation=" + gameCreation +
+                ", winorloss=" + winorloss +
+                ", currteam=" + currteam +
                 '}';
     }
 }

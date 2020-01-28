@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Iterator;
+
 
 @SpringBootTest
 class BasementApplicationTests {
@@ -33,8 +35,13 @@ class BasementApplicationTests {
     @Test
     void matchDtoTest() {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://kr.api.riotgames.com/lol/match/v4/matches/4094451728?api_key=RGAPI-66b8d7b1-4fed-4aaf-aa3d-078018304b1b";
+        String url = "https://kr.api.riotgames.com/lol/match/v4/matches/4094451728?api_key=RGAPI-b7f62abb-59dd-454b-aa12-024755b0dc2d";
         MatchDto temp = restTemplate.getForObject(url, MatchDto.class);
+        for (int i = 0; i < temp.getParticipantIdentities().size(); i++) {
+            System.out.println(temp.getParticipantIdentities().get(i).getPlayer().getSummonerName());
+            System.out.println(temp.getParticipants().get(i).getTeamId());
+            System.out.println(temp.getParticipants().get(i).getStats().isWin());
+        }
         log.info(temp.getTeams().toString());
     }
 

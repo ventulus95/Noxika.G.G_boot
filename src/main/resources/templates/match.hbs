@@ -21,31 +21,14 @@
 </nav>
 <div class="container p-5 shadow-lg p-3 mb-5 bg-white rounded">
     <div class="row h-100 justify-content-center align-items-center">
-        {{#league}}
-            <div class="col-md-5">
-                <img alt="랭크 엠블램" src="/img/emblems/Emblem_{{tier}}.png" class="mx-auto d-block"
-                     style="max-width: 75%;">
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-6" style="text-align: center;">
-                <h2>{{queueType}}</h2>
-                <h3>승리/패배 </h3>
-                <p style="color: #007bff; font-size: 24px; display: inline">{{wins}}</p>
-                <p style="font-size: 24px; display: inline">/</p>
-                <p style="color:#dc3545; font-size: 24px; display:inline">{{losses}}</p>
-                <span style="color: #6c757d; font-size:18px;"> ({{winrate}}%) </span>
+        {{#matches}}
+            {{#if match.winorloss }}
+            <div class="col-md-12" style="background: #007bff;">
+            {{else}}
 
-                <h3>당신의 티어는? </h3>
-                {{tier}}
-                {{rank}}
-                <!--                <p>당신의 리그는 ${leagueName[s.index]}, ${leagueInfo.getTier()} ${leagueInfo.getRank()} 단계 입니다.</p>-->
-            </div>
-        {{/league}}
-    </div>
-    <div class="row h-100 justify-content-center align-items-center">
-        {{#match}}
+            <div class="col-md-12" style="background: #dc3545;">
+            {{/if}}
             <div class="col-md-5">
-                <a href="/search/match/{{gameId}}">이 메치에 대해서 알아보기</a>
                 <img src="{{championImgUrl}}" alt="챔피언 사진들" style="width: 75px; margin: 15px;"/>
                 {{championName}}
             </div>
@@ -54,7 +37,8 @@
                 {{role}}
                 {{timestamp}}
             </div>
-        {{/match}}
+        </div>
+        {{/matches}}
     </div>
 
 
